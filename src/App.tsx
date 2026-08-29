@@ -16,6 +16,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LogingPage from "./LogingPage";
+import RegisterPage from "./RegisterPage";
 import Dashboard from "./componets/Dashboard";
 import FindDisease from "./componets/FindDisease";
 import AddDisease from "./componets/AddDisease";
@@ -40,6 +41,12 @@ function App() {
         <Route
           path="/login"
           element={<LogingPage />}
+        />
+
+        {/* Register */}
+        <Route
+          path="/register"
+          element={<RegisterPage />}
         />
 
         {/* Dashboard Layout (Pathless Route) */}

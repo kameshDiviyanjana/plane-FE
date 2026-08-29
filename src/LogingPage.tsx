@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useLogin } from './api/auth-api';
 import { isTokenValid } from './api/tokenUtils';
 
@@ -125,6 +125,16 @@ const LogingPage = () => {
       </button>
 
     </form>
+
+    <div className="mt-6 text-center text-sm text-gray-600">
+      Don't have an account?{' '}
+      <Link
+        to="/register"
+        className="font-semibold text-green-600 hover:text-green-700 transition hover:underline"
+      >
+        Register
+      </Link>
+    </div>
   </div>
 </div>
   );

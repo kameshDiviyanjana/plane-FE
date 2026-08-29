@@ -8,6 +8,7 @@ interface PredictionResult {
   confidence: number;
   imageUrl: string | null;
   createdAt: string;
+  treatment?: string;
 }
 
 const FindDisease = () => {
@@ -208,6 +209,31 @@ const FindDisease = () => {
               </div>
             )}
           </div>
+
+          {result.treatment && (
+            <div className="mt-8 border-t pt-6">
+              <span className="text-xs uppercase font-semibold text-gray-400 tracking-wider">
+                🛡️ Recommended Treatment / Remedy
+              </span>
+              <div className={`mt-3 p-5 rounded-xl border flex items-start gap-4 ${
+                result.diseaseName.toLowerCase().includes("healthy")
+                  ? "bg-green-50/50 border-green-200 text-green-800"
+                  : "bg-amber-50/60 border-amber-200 text-amber-900"
+              }`}>
+                <span className="text-2xl mt-0.5">
+                  {result.diseaseName.toLowerCase().includes("healthy") ? "✨" : "📋"}
+                </span>
+                <div>
+                  <h4 className="font-bold text-sm uppercase tracking-wide mb-1">
+                    {result.diseaseName.toLowerCase().includes("healthy") ? "Prevention & Maintenance" : "Treatment Steps"}
+                  </h4>
+                  <p className="text-sm leading-relaxed font-medium">
+                    {result.treatment}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

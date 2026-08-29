@@ -48,3 +48,33 @@ export const useLogin = () => {
   });
 };
 
+interface RegisterCredentials {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export const useRegister = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (credentials: RegisterCredentials) => {
+      const res = await authFetch.post<AuthResponse>("/auth/register", credentials);
+      return res.data;
+    },
+
+    onSuccess: (data) => {
+      if (data && data.success && data.accessToken && data.refreshToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
+      }
+
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+    },
+  });
+};
