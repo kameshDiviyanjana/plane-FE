@@ -23,6 +23,7 @@ import AddDisease from "./componets/AddDisease";
 import DiseaseList from "./componets/DiseaseList";
 import DashboardComponents from "./componets/DashboardComponents";
 import LandingPage from "./componets/LandingPage";
+import AdminDashboard from "./componets/AdminDashboard";
 
 
 function App() {
@@ -76,6 +77,12 @@ function App() {
           <Route
             path="/diseases"
             element={<DiseaseList />}
+          />
+
+          {/* /admin */}
+          <Route
+            path="/admin"
+            element={<AdminDashboard />}
           />
 
         </Route>

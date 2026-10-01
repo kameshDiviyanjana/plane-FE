@@ -47,6 +47,13 @@ const DashboardComponents = () => {
             ➕ Add Disease
           </Link>
 
+          <Link
+            to="/admin"
+            className="rounded-lg p-3 font-medium text-emerald-800 bg-emerald-50 hover:bg-emerald-100 flex items-center gap-2 mt-2"
+          >
+            👑 Admin Panel
+          </Link>
+
         </nav>
       </aside>
 

@@ -67,6 +67,24 @@ const Dashboard = () => {
           </p>
         </Link>
 
+        {/* Admin Panel */}
+        <Link
+          to="/admin"
+          className="rounded-xl bg-gradient-to-br from-emerald-600 to-teal-800 p-6 shadow-md text-white transition hover:-translate-y-1 hover:shadow-xl border border-emerald-500"
+        >
+          <div className="mb-4 text-4xl">
+            👑
+          </div>
+
+          <h2 className="mb-2 text-xl font-bold text-white">
+            Admin Panel
+          </h2>
+
+          <p className="text-emerald-100 text-sm">
+            View all predictions and user displays with full system control.
+          </p>
+        </Link>
+
       </div>
     </div>
   );
