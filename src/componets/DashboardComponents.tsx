@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { isTokenValid } from "../api/tokenUtils";
+import { getUserRole, isTokenValid } from "../api/tokenUtils";
 
 const DashboardComponents = () => {
   const navigate = useNavigate();
@@ -13,6 +13,9 @@ const DashboardComponents = () => {
 
   const userStr = localStorage.getItem("user");
   const user = userStr ? JSON.parse(userStr) : null;
+
+  const role = getUserRole();
+
   return (
     <div className="flex min-h-screen bg-gray-100">
 
@@ -26,33 +29,49 @@ const DashboardComponents = () => {
 
         <nav className="flex flex-col gap-2 p-4">
 
-          <Link
-            to="/dashboard"
-            className="rounded-lg p-3 font-medium text-gray-700 hover:bg-green-100 hover:text-green-700"
-          >
-            Dashboard
-          </Link>
+          {
+            role === "USER" && (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="rounded-lg p-3 font-medium text-gray-700 hover:bg-green-100 hover:text-green-700"
+                >
+                  Dashboard
+                </Link>
 
-          <Link
-            to="/finddisease"
-            className="rounded-lg p-3 font-medium text-gray-700 hover:bg-green-100 hover:text-green-700"
-          >
-            🔍 Find Disease
-          </Link>
+                <Link
+                  to="/finddisease"
+                  className="rounded-lg p-3 font-medium text-gray-700 hover:bg-green-100 hover:text-green-700"
+                >
+                  🔍 Find Disease
+                </Link>
+              </>
+            )
+          }
 
-          <Link
-            to="/adddisease"
-            className="rounded-lg p-3 font-medium text-gray-700 hover:bg-green-100 hover:text-green-700"
-          >
-            ➕ Add Disease
-          </Link>
 
-          <Link
-            to="/admin"
-            className="rounded-lg p-3 font-medium text-emerald-800 bg-emerald-50 hover:bg-emerald-100 flex items-center gap-2 mt-2"
-          >
-            👑 Admin Panel
-          </Link>
+
+          {
+            role === "ADMIN" && (
+              <Link
+                to="/admin"
+                className="rounded-lg p-3 font-medium text-emerald-800 bg-emerald-50 hover:bg-emerald-100 flex items-center gap-2 mt-2"
+              >
+                👑 Admin Panel
+              </Link>
+            )
+          }
+
+          {
+            (role === "USER" || role === "ADMIN") && (<Link
+              to="/adddisease"
+              className="rounded-lg p-3 font-medium text-gray-700 hover:bg-green-100 hover:text-green-700"
+            >
+              ➕ Add Disease
+            </Link>)
+          }
+
+
 
         </nav>
       </aside>

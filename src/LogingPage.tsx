@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useLogin } from './api/auth-api';
-import { isTokenValid } from './api/tokenUtils';
+import { getUserRole, isTokenValid } from './api/tokenUtils';
 
 const LogingPage = () => {
     const [username, setUsername] = useState('');
@@ -10,9 +10,19 @@ const LogingPage = () => {
     const loginMutation = useLogin();
     const navigate = useNavigate();
 
+    const role = getUserRole();
+
+
     useEffect(() => {
         if (isTokenValid()) {
-            navigate('/dashboard');
+
+          if(role === "ADMIN"){
+            navigate('/admin')
+          }
+           
+          if(role === "USER"){
+             navigate('/dashboard');
+          }
         }
     }, [navigate]);
 
@@ -30,7 +40,13 @@ const LogingPage = () => {
             {
                 onSuccess: (data) => {
                     if (data && data.success) {
-                        navigate('/dashboard');
+                          if(role === "ADMIN"){
+            navigate('/admin')
+          }
+           
+          if(role === "USER"){
+             navigate('/dashboard');
+          }
                     } else {
                         setError(data?.message || 'Login failed');
                     }
