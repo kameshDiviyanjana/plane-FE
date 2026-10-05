@@ -153,14 +153,14 @@ const FindDisease = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col justify-center space-y-4">
-              <div>
+              {/* <div>
                 <span className="text-xs uppercase font-semibold text-gray-400 tracking-wider">
                   Plant Name
                 </span>
                 <p className="text-lg font-bold text-gray-800 flex items-center gap-2 mt-1">
                   🌿 {result.plantName}
                 </p>
-              </div>
+              </div> */}
 
               <div>
                 <span className="text-xs uppercase font-semibold text-gray-400 tracking-wider">
